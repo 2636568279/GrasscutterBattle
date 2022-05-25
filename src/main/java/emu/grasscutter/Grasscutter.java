@@ -70,6 +70,8 @@ public final class Grasscutter {
 
 	public static Map<Integer, Integer> playerPetMap = new HashMap<>();
 
+	public static Map<Integer, Float> playerBattleMap = new HashMap<>();
+
   public static void main(String[] args) throws Exception {
     	Crypto.loadKeys(); // Load keys from buffers.
 

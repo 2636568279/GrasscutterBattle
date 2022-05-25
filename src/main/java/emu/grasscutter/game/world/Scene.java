@@ -385,9 +385,21 @@ public class Scene {
 			Player player = temp.getPlayer();
 			// 玩家攻击
 			if ( target instanceof EntityMonster ){
+				// 判断是都攻击的是宠物
 				if (Grasscutter.playerPetMap.get(target.getId()) != null ){
 					if ( Grasscutter.playerPetMap.get(target.getId()) == player.getUid()){
+						// 攻击自己的宠物
 						Grasscutter.getLogger().info("玩家 " + String.valueOf(player.getUid()) + " 正在攻击自己的宠物 " + String.valueOf(target.getId()) + " 伤害为 " + String.valueOf(result.getDamage()) + " 攻击无效!(不能攻击自己的宠物)" );
+						return;
+					}else {
+						// 攻击别人的宠物
+						Integer otherUid = Grasscutter.playerPetMap.get(target.getId());
+						if (Grasscutter.playerBattleMap.get(otherUid) == null){
+							Grasscutter.playerBattleMap.put(otherUid,-result.getDamage() );
+						}else {
+							Float damageBefore = Float.parseFloat(Grasscutter.playerBattleMap.get(otherUid).toString());
+							Grasscutter.playerBattleMap.put( otherUid , (-result.getDamage() + damageBefore) );
+						}
 						return;
 					}
 				}
@@ -418,7 +430,17 @@ public class Scene {
 		}
 		
 		// Lose hp
-		target.addFightProperty(FightProperty.FIGHT_PROP_CUR_HP, -result.getDamage());
+		Float hp = 0.0f;
+		if ( attacker instanceof EntityAvatar ){
+			EntityAvatar temp = (EntityAvatar) attacker;
+			Player player = temp.getPlayer();
+			Integer playlerUid  = player.getUid();
+			if ( Grasscutter.playerBattleMap.get(playlerUid) != null){
+				hp = Float.parseFloat(Grasscutter.playerBattleMap.get(playlerUid).toString());
+				Grasscutter.playerBattleMap.remove(playlerUid);
+			}
+		}
+		target.addFightProperty(FightProperty.FIGHT_PROP_CUR_HP, -result.getDamage()+hp);
 		
 		// Check if dead
 		boolean isDead = false;
