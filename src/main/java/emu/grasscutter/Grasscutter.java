@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import emu.grasscutter.command.CommandMap;
+import emu.grasscutter.game.entity.GameEntity;
 import emu.grasscutter.plugin.PluginManager;
 import emu.grasscutter.plugin.api.ServerHook;
 import emu.grasscutter.scripts.ScriptLoader;
@@ -68,9 +69,10 @@ public final class Grasscutter {
 		Utils.startupCheck();
 	}
 
+	// 怪物实体ID  玩家UID
 	public static Map<Integer, Integer> playerPetMap = new HashMap<>();
-
-	public static Map<Integer, Float> playerBattleMap = new HashMap<>();
+	// 玩家UID GameEntity
+	public static Map<Integer, GameEntity> playerGameEntityMap = new HashMap<>();
 
   public static void main(String[] args) throws Exception {
     	Crypto.loadKeys(); // Load keys from buffers.
