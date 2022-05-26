@@ -1,4 +1,4 @@
-![Grasscutter](http://mms2.baidu.com/it/u=3558975354,926744392&fm=253&app=138&f=JPEG&fmt=auto&q=75?w=500&h=500)
+<div align="center"><img alt="Discord - Grasscutter" src="https://qqmunsic.oss-cn-zhangjiakou.aliyuncs.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20220524095232.jpg"></a></div>
 <div align="center"><img alt="Documention" src="https://img.shields.io/badge/Wiki-Grasscutter-blue?style=for-the-badge&link=https://github.com/Grasscutters/Grasscutter/wiki&link=https://github.com/Grasscutters/Grasscutter/wiki"> <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/Grasscutters/Grasscutter?logo=java&style=for-the-badge"> <img alt="GitHub" src="https://img.shields.io/github/license/Grasscutters/Grasscutter?style=for-the-badge"> <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/Grasscutters/Grasscutter?style=for-the-badge"> <img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/Grasscutters/Grasscutter/Build?logo=github&style=for-the-badge"></div>
 
 ## 当前特性
@@ -99,6 +99,7 @@ chmod +x gradlew
 
 | 命令            | 用法                                         | 权限节点                  | 可用性   | 注释                                       | 别名                                            |
 | -------------- | -------------------------------------------- | ------------------------- | -------- | ------------------------------------------ | ----------------------------------------------- |
+| pet        | pet <实体ID>      |                           | 仅服务端 | 在你周围生成专属宠物                |     
 | account        | account <create\|delete> <用户名> [uid]      |                           | 仅服务端 | 通过指定用户名和uid增删账户                |                                                 |
 | broadcast      | broadcast <消息内容>                         | server.broadcast          | 均可使用 | 给所有玩家发送公告                         | b                                               |
 | coop           | coop \<uid> <目标uid>                 | server.coop               | 均可使用    | 强制某位玩家进入指定玩家的多人世界                  |                                                 |
