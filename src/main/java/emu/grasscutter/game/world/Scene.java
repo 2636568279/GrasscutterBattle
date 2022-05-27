@@ -418,7 +418,7 @@ public class Scene {
 							// 场景中的实体属于玩家
 							EntityAvatar avatarTemp = (EntityAvatar) gameEntity;
 							Player playerTemp = avatarTemp.getPlayer();
-							Grasscutter.getLogger().info("    玩家  " + String.valueOf(player.getUid()) + " : (" + String.valueOf(gameEntity.getId()) + ")" );
+							Grasscutter.getLogger().info("    玩家  " + String.valueOf(playerTemp.getUid()) + " : (" + String.valueOf(gameEntity.getId()) + ")" );
 						}
 					}
 					if ( Grasscutter.playerPetMap.get(target.getId()) == player.getUid()){
@@ -435,9 +435,10 @@ public class Scene {
 						target = otherGameEntity;
 						Grasscutter.getLogger().info("玩家 " + String.valueOf(player.getUid()) + " : (" + String.valueOf(attacker.getId()) +")" + " 攻击了玩家 " + String.valueOf(otherUid) + " : (" + String.valueOf(otherGameEntity.getId()) +")" + " 伤害为 " + String.valueOf(result.getDamage()) );
 					}
+				}else {
+					// 怪物
+					Grasscutter.getLogger().info("玩家 " + String.valueOf(player.getUid()) + " : (" + String.valueOf(attacker.getId()) +")" + " 攻击了怪物 " + String.valueOf(target.getId()) + " 伤害为 " + String.valueOf(result.getDamage()) );
 				}
-				// 怪物
-				Grasscutter.getLogger().info("玩家 " + String.valueOf(player.getUid()) + " : (" + String.valueOf(attacker.getId()) +")" + " 攻击了怪物 " + String.valueOf(target.getId()) + " 伤害为 " + String.valueOf(result.getDamage()) );
 			}else {
 				// 玩家
 				EntityAvatar temp2 = (EntityAvatar) target;
@@ -477,7 +478,15 @@ public class Scene {
 		
 		// Check if dead
 		if (isDead) {
-			this.killEntity(target, result.getAttackerId());
+			if ( target instanceof EntityMonster ){
+				if (Grasscutter.playerPetMap.get(target.getId()) != null ){
+					Grasscutter.getLogger().info("宠物 " + String.valueOf(target.getId()) + " 不能被 " + result.getAttackerId() + "杀死");
+				}else {
+					this.killEntity(target, result.getAttackerId());
+				}
+			}else {
+				this.killEntity(target, result.getAttackerId());
+			}
 		}
 	}
 	
